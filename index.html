@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rock Paper Scissors Part 1</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Rock, Paper, Scissors</h1>
+      <div id="game">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button id="rock" type="button" class="mx-2 btn btn-secondary">
+            Rock
+          </button>
+          <button id="paper" type="button" class="mx-2 btn btn-secondary">
+            Paper
+          </button>
+          <button id="scissors" type="button" class="mx-2 btn btn-secondary">
+            Scissors
+          </button>
+        </div>
+
+        <h3>Wins: <span id="wins"></span></h3>
+        <h3>Losses: <span id="losses"></span></h3>
+        <h3>Ties: <span id="ties"></span></h3>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      // Declare variables
+      var wins = 0;
+      var losses = 0;
+      var ties = 0;
+      var items = ["r", "p", "s"];
+      var userGuess;
+      function rockSelect() {
+        userGuess = "r";
+        console.log("rock selected");
+        game();
+      }
+      function scissorsSelect() {
+        userGuess = "s";
+        console.log("scissor selected");
+        game();
+      }
+      function paperSelect() {
+        userGuess = "p";
+        console.log("paper selected");
+        game();
+      }
+      // add event listeners
+      var rockButton = document
+        .querySelector("#rock")
+        .addEventListener("click", rockSelect);
+      var paperButton = document
+        .querySelector("#paper")
+        .addEventListener("click", paperSelect);
+      var scissorsButton = document
+        .querySelector("#scissors")
+        .addEventListener("click", scissorsSelect);
+
+      // select text ids
+      const winText = document.querySelector("#wins");
+      const lossText = document.querySelector("#losses");
+      const tieText = document.querySelector("#ties");
+
+      // randomize computer guesses
+      var computerguess;
+      // if statements
+      function game() {
+        computerGuess = items[Math.floor(Math.random() * items.length)];
+        if (userGuess === computerGuess) {
+          alert("You Tied!");
+          ties++;
+          tieText.textContent = ties;
+        } else if (
+          (userGuess === "r" && computerGuess === "p") ||
+          (userGuess === "p" && computerGuess === "s") ||
+          (userGuess === "s" && computerGuess === "r")
+        ) {
+          alert("You Lost");
+          losses++;
+          lossText.textContent = losses;
+        } else if (
+          (userGuess === "r" && computerGuess === "s") ||
+          (userGuess === "s" && computerGuess === "p") ||
+          (userGuess === "p" && computerGuess === "r")
+        ) {
+          alert("You Win!");
+          wins++;
+          winText.textContent = wins;
+        }
+      }
+    </script>
+  </body>
+</html>
